@@ -1,6 +1,4 @@
 module.exports = {
-  // css
-  // pluginOptions
   devServer: {
     open: true, // 配置自动启动浏览器
     // 设置代理 devServer.proxy 可以是一个指向开发环境 API 服务器的字符串
