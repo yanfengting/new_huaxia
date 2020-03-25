@@ -35,7 +35,7 @@ function showDialog(text, icon = 'success', show = true) {
         this.showWrap = false
         this.showContent = false
         debugger
-        let node = document.querySelector('#dialog')
+        const node = document.querySelector('#dialog')
         if (node && node.parentNode) {
           node.parentNode.removeChild(node)
         }
