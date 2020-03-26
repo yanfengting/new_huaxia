@@ -3,6 +3,15 @@
     <header class="mui-bar mui-bar-nav"
             style="display: flex;flex-direction: row;align-items: center; justify-content: space-between">
       <div class="mui-action-back mui-icon mui-icon-back mui-action-menu"></div>
+      <!-- 音乐图标 -->
+      <template v-if="this.$store.state.playFlag">
+        <a href="javascript:;"
+           @click="Music"
+           class="mui-icon mui-action-menu mui-icon-bars music-btn">
+          <div class="music-btn music-btn-icon"
+               alt></div>
+        </a>
+      </template>
       <h1 class="mui-title"
           @click="itinerary">
         <div class="start"
@@ -399,347 +408,423 @@ export default {
 }
 </script>
 <style lang="stylus">
-.cube-slide-item > a.main-bak-height
-  height 150px
-@media screen and (min-width: 500px)
-  .cube-slide-item > a.main-bak-height
-    height 300px
-a.music-btn, div.music-btn
-  width 20px
-  height 20px
-.music-btn-icon
-  background-image url('../assets/images/system/topmusic.png')
-  background-repeat no-repeat
-  background-position 100% 100%
-  background-size 100% 100%
-.header .img-wrap.upgrade
-  border none
-  -webkit-border-radius 3px
-  -moz-border-radius 3px
-  border-radius 3px
-.header .img-wrap.upgrade img
-  border-radius 3px
-.cube-dialog-alert .cube-dialog-btn
-  display none
-.cube-dialog-alert
-  padding-bottom 20px
-.cube-slide-item > a, .cube-slide-item > a > img
-  width 100%
-  height 100%
-.sku-close
-  background url('../assets/images/system/close_w_icon.png') no-repeat center center
-  background-size auto 100%
-  margin-top 10px
-.my-wait
-  text-align center
-  background url('../assets/images/system/waiting.png') no-repeat center bottom
-  -webkit-background-size 40px 40px
-  background-size 40px 40px
-  padding-top 80px
-.cube-dialog-main
-  border-radius 5px
-.my-order
-  text-align center
-  background url('../assets/images/system/order_icon.png') no-repeat center bottom
-  -webkit-background-size 40px 40px
-  background-size 40px 40px
-  padding-top 80px
-.my-error
-  text-align center
-  background url('../assets/images/system/error_icon.png') no-repeat center bottom
-  -webkit-background-size 40px 40px
-  background-size 40px 40px
-  padding-top 80px
-.my-eable
-  text-align center
-  background url('../assets/images/system/eable.png') no-repeat center bottom
-  -webkit-background-size 40px 40px
-  background-size 40px 40px
-  padding-top 80px
-.cube-slide-dots > span
-  border-radius 10px
-.cube-slide-dots
-  bottom 15px
-.swipe-img
-  width 100%
-  height 100%
-  max-height 200px
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  width 100%
-div.cube-slide-dots
-  left 50% !important
-  width 200px
-body, html
-  overflow-x hidden
-  height 100%
-  position relative
-  font-size 18px
-  color black
-  z-index 0
-.site
-  overflow hidden
-  text-overflow ellipsis
-.cube-dialog-close
-  z-index 111111
-ul, li
-  margin 0
-  padding 0
-.icon-1:before
-  font-size 15px
+.cube-slide-item > a.main-bak-height {
+  height: 150px;
+}
+@media screen and (min-width: 500px) {
+  .cube-slide-item > a.main-bak-height {
+    height: 300px;
+  }
+}
+a.music-btn, div.music-btn {
+  width: 20px;
+  height: 20px;
+}
+.music-btn-icon {
+  background-image: url('../assets/images/system/topmusic.png');
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-size: 100% 100%;
+}
+.header .img-wrap.upgrade {
+  border: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.header .img-wrap.upgrade img {
+  border-radius: 3px;
+}
+.cube-dialog-alert .cube-dialog-btn {
+  display: none;
+}
+.cube-dialog-alert {
+  padding-bottom: 20px;
+}
+.cube-slide-item > a, .cube-slide-item > a > img {
+  width: 100%;
+  height: 100%;
+}
+.sku-close {
+  background: url('../assets/images/system/close_w_icon.png') no-repeat center center;
+  background-size: auto 100%;
+  margin-top: 10px;
+}
+.my-wait {
+  text-align: center;
+  background: url('../assets/images/system/waiting.png') no-repeat center bottom;
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+  padding-top: 80px;
+}
+.cube-dialog-main {
+  border-radius: 5px;
+}
+.my-order {
+  text-align: center;
+  background: url('../assets/images/system/order_icon.png') no-repeat center bottom;
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+  padding-top: 80px;
+}
+.my-error {
+  text-align: center;
+  background: url('../assets/images/system/error_icon.png') no-repeat center bottom;
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+  padding-top: 80px;
+}
+.my-eable {
+  text-align: center;
+  background: url('../assets/images/system/eable.png') no-repeat center bottom;
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+  padding-top: 80px;
+}
+.cube-slide-dots > span {
+  border-radius: 10px;
+}
+.cube-slide-dots {
+  bottom: 15px;
+}
+.swipe-img {
+  width: 100%;
+  height: 100%;
+  max-height: 200px;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+div.cube-slide-dots {
+  left: 50% !important;
+  width: 200px;
+}
+body, html {
+  overflow-x: hidden;
+  height: 100%;
+  position: relative;
+  font-size: 18px;
+  color: black;
+  z-index: 0;
+}
+.site {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cube-dialog-close {
+  z-index: 111111;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+.icon-1:before {
+  font-size: 15px;
+}
 /* 机上升舱 */
 /* 内容 */
-.mui-bar
-  right 0
-  left 0
-  height 44px
+.mui-bar {
+  right: 0;
+  left: 0;
+  height: 44px;
   /* border-bottom: 1px solid rgb(118, 130, 151); */
-  background-color #fff
-  backface-visibility hidden
-  box-shadow none
-.logo-first
+  background-color: #fff;
+  backface-visibility: hidden;
+  box-shadow: none;
+}
+.logo-first {
   /* vertical-align: top; */
-  width 100%
-  height 100%
+  width: 100%;
+  height: 100%;
   /* background: url("../assets/images/system/topmusic.png") no-repeat center center */
-  background-position 100% 100%
-  -webkit-background-size 100% 100%
-  background-size 100% 100%
+  background-position: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
 /* width 18px */
 /* height 18px */
 /* margin auto */
 /* 清除浮动代码 */
-.clearfix:after
-  display block
-  overflow hidden
-  clear both
-  height 0
-  visibility hidden
-  content ''
-.mainindex
-  margin auto 10px
-.maincontent
-  width 100%
-  height 310px
+.clearfix:after {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  content: '';
+}
+.mainindex {
+  margin: auto 10px;
+}
+.maincontent {
+  width: 100%;
+  height: 310px;
+}
 /* background-color #fff */
-input
-  border solid 1px
-.title-one
-  font-weight 700
-  font-size 16px
-  padding-bottom 5px
-  padding-left 10px
-  padding-top 10px
-.title-two
-  font-weight 700
-  font-size 16px
-  padding-bottom 5px
-  padding-left 10px
-  padding-top 10px
-.title-three
-  display block
-  font-weight 700
-  font-size 16px
-  padding-bottom 5px
-  padding-left 10px
-  padding-top 10px
-.cabin
-  height 80px
-  margin-top 20px
+input {
+  border: solid 1px;
+}
+.title-one {
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.title-two {
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.title-three {
+  display: block;
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.cabin {
+  height: 80px;
+  margin-top: 20px;
   /* border-left 10px #fff solid */
   /* border-right 10px #fff solid */
-  display flex
-  flex-direction row
-  justify-content space-between
-.huaxia
-  height 225px
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.huaxia {
+  height: 225px;
+}
 /* border-left 10px #fff solid */
 /* border-right 10px #fff solid */
-.amusement
-  display flex
+.amusement {
+  display: flex;
+}
 /* margin-top 3px */
 /* border-left 10px #fff solid */
 /* border-right 10px #fff solid */
-.item-border
+.item-border {
   /* border 1.5px #fff solid */
-.cab
-  float left
-  width 49.2%
-  height 150px
-  margin 0.3%
+}
+.cab {
+  float: left;
+  width: 49.2%;
+  height: 150px;
+  margin: 0.3%;
+}
 /* margin: 1.5px; */
 /* border: 1.5px #fff solid; */
-.cab-up
-  height 50%
-  border-radius 10px
+.cab-up {
+  height: 50%;
+  border-radius: 10px;
   /* margin-bottom: 1.5px; */
-  display flex
-  align-items center
+  display: flex;
+  align-items: center;
+}
 /* border-top: 1.5px #fff solid;
 border-bottom: 1.5px #fff solid; */
-.cab-down
-  height 50%
-  border-radius 8px
+.cab-down {
+  height: 50%;
+  border-radius: 8px;
   /* margin-top: 3px; */
-  display flex
-  align-items center
-.cab-common
-  width 50px
-  height 50px
+  display: flex;
+  align-items: center;
+}
+.cab-common {
+  width: 50px;
+  height: 50px;
   /* border-radius 10px */
   /* border 1.5px solid #fff */
-  display flex
-  flex-direction column
-  align-items center
-.cab-food, .cab-safety
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cab-food, .cab-safety {
   /* margin-left: 3px; */
   /* border: 1.5px #fff solid; */
-.iconfont
-  border solid 1px #000000
-  border-radius 50%
-  height 15px
-  display block
-  width 15px
-.Upgrade
+}
+.iconfont {
+  border: solid 1px #000000;
+  border-radius: 50%;
+  height: 15px;
+  display: block;
+  width: 15px;
+}
+.Upgrade {
   /* border 1.5px solid #fff */
-  border-radius 8px
-  font-size 17px
-  font-weight 600
-  background url('../assets/images/main/upgrade.png') no-repeat left top
-  background-size 100% 100%
-.cab-demand
-  background url('../assets/images/main/huhuanling.png') no-repeat left top
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  background: url('../assets/images/main/upgrade.png') no-repeat left top;
+  background-size: 100% 100%;
+}
+.cab-demand {
+  background: url('../assets/images/main/huhuanling.png') no-repeat left top;
   /* background-size 100% 73.5px */
-  background-size 100% 100%
-.cab-food
-  background url('../assets/images/main/food.png') no-repeat left top
+  background-size: 100% 100%;
+}
+.cab-food {
+  background: url('../assets/images/main/food.png') no-repeat left top;
   /* background-size 100% 73.5px */
-  background-size 100% 100%
-.cab-itinerary
-  background url('../assets/images/main/xingcheng.png') no-repeat left top
+  background-size: 100% 100%;
+}
+.cab-itinerary {
+  background: url('../assets/images/main/xingcheng.png') no-repeat left top;
   /* background-size 100% 73.5px */
-  background-size 100% 100%
-.cab-safety
-  background url('../assets/images/main/xuzhi.png') no-repeat left top
+  background-size: 100% 100%;
+}
+.cab-safety {
+  background: url('../assets/images/main/xuzhi.png') no-repeat left top;
   /* background-size 100% 73.5px */
-  background-size 100% 100%
-.Brand
-  background url('../assets/images/main/Brand.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-.Airline
-  background url('../assets/images/main/Airline.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-.Through
-  background url('../assets/images/main/Through.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-.Gift
-  background url('../assets/images/main/shopping_mall.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-.Video
-  background url('../assets/images/main/video.png') no-repeat left top
-  background-size 100% 100%
-.Music
-  background url('../assets/images/main/music.png') no-repeat left top
-  background-size 100% 100%
-.Games
-  background url('../assets/images/main/games.png') no-repeat left top
-  background-size 100% 100%
-  background-position center center
-.Read
-  background url('../assets/images/main/read.png') no-repeat left top
-  background-size 100% 100%
-  background-position center center
-.recommend
-  background url('../assets/images/main/recommend.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-  background-position center center
-.opinion
-  background url('../assets/images/main/opinion.png') no-repeat left top
-  background-size 100% 100%
-  margin-bottom 1.5px
-  background-position center center
-.amuse
-  width 24.2%
-  height 79px
+  background-size: 100% 100%;
+}
+.Brand {
+  background: url('../assets/images/main/Brand.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+}
+.Airline {
+  background: url('../assets/images/main/Airline.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+}
+.Through {
+  background: url('../assets/images/main/Through.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+}
+.Gift {
+  background: url('../assets/images/main/shopping_mall.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+}
+.Video {
+  background: url('../assets/images/main/video.png') no-repeat left top;
+  background-size: 100% 100%;
+}
+.Music {
+  background: url('../assets/images/main/music.png') no-repeat left top;
+  background-size: 100% 100%;
+}
+.Games {
+  background: url('../assets/images/main/games.png') no-repeat left top;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+.Read {
+  background: url('../assets/images/main/read.png') no-repeat left top;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+.recommend {
+  background: url('../assets/images/main/recommend.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+  background-position: center center;
+}
+.opinion {
+  background: url('../assets/images/main/opinion.png') no-repeat left top;
+  background-size: 100% 100%;
+  margin-bottom: 1.5px;
+  background-position: center center;
+}
+.amuse {
+  width: 24.2%;
+  height: 79px;
   /* border 1.5px #fff solid */
-  border-radius 10px
-  display flex
-  align-items center
-  margin 0.3%
-.cab-num
-  display flex
-  margin 0 auto
-.cab-num p
-  margin 0
-  padding 0
-  width 50%
-  text-align center
-  color white
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin: 0.3%;
+}
+.cab-num {
+  display: flex;
+  margin: 0 auto;
+}
+.cab-num p {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  text-align: center;
+  color: white;
+}
 /* margin: 5px 10px; */
-.cab-upgrade
-  padding 40px 0 0 0
+.cab-upgrade {
+  padding: 40px 0 0 0;
+}
 /* footer */
-footer
-  width 100%
-  height 85px
-  line-height 85px
-  vertical-align middle
-.foot
-  width 50%
-  height 85px
-  float left
-  line-height 85px
-  text-align center
-  display flex
-  align-items center
-.describe span
-  width 80%
-  height 15px
-  line-height 20px
-  display block
-  color #fff
-.describe
-  width 80%
-  margin-left 10%
-  margin-top 30px
-.top-describe span
-  width 80%
-height 15px, line-height 20px, display block, color #fff, .top-describe
-  width 80%
-  margin-left 10%
-  margin-top 15px
-.foo-describe span
-  width 100%
-  height 15px
-  line-height 20px
-  display block
-  color #fff
-.foo-describe
-  width 100%
-  margin-top 20px
-  text-align center
-.first
-  font-size 14px
-  font-weight bold
-.first-font
-  font-size 12px
-  color #000000 e3
-.second
-  color rgba(255, 255, 255, 0.6)
-  margin-top 5px
-  font-size 10px
-  font-weight normal
-  line-height 10px
-  word-wrap break-word
-  height 25px
-.main-background
-  position absolute
-  top 0
-  z-index -1
-  width 100%
+footer {
+  width: 100%;
+  height: 85px;
+  line-height: 85px;
+  vertical-align: middle;
+}
+.foot {
+  width: 50%;
+  height: 85px;
+  float: left;
+  line-height: 85px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.describe span {
+  width: 80%;
+  height: 15px;
+  line-height: 20px;
+  display: block;
+  color: #fff;
+}
+.describe {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 30px;
+}
+.top-describe span {
+  width: 80%;
+}
+height 15px, line-height 20px, display block, color #fff, .top-describe {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 15px;
+}
+.foo-describe span {
+  width: 100%;
+  height: 15px;
+  line-height: 20px;
+  display: block;
+  color: #fff;
+}
+.foo-describe {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+.first {
+  font-size: 14px;
+  font-weight: bold;
+}
+.first-font {
+  font-size: 12px;
+  color: #000000 e3;
+}
+.second {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 10px;
+  word-wrap: break-word;
+  height: 25px;
+}
+.main-background {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+}
 </style>
