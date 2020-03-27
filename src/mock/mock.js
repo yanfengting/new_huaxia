@@ -600,7 +600,7 @@ const AdvertiseIdData = {
 const OrderData = {
   status: 200,
   msg: '',
-  data: [{
+  'data|3': [{
       id: '2e4b7a05-2e27-4b9c-a527-dd3ef62cf278',
       orderType: 'FO',
       num: 2,
@@ -616,9 +616,19 @@ const OrderData = {
       num: 1,
       orderNo: 104568752,
       totalPrice: 28,
-      item: '米饭',
+      item: '面条',
       price: 28,
       status: '待确认'
+    },
+    {
+      id: '2e4b7a05-2e27-4b9c-a527-dd3ef62cf278',
+      orderType: 'FO',
+      num: 2,
+      orderNo: 104568752,
+      totalPrice: 0,
+      item: '热水',
+      price: 0,
+      status: '已取消'
     }
   ]
 }
@@ -758,7 +768,7 @@ Mock.mock('api/callbell/list', 'get', CallbellData)
 Mock.mock('api/callbell/chickUsable', 'get', CallbellChick)
 Mock.mock(/\/api\/callbell\/submit[\s\S]*?/, 'post', CallbellSubmit)
 // 餐食
-Mock.mock('api/food/chickUsable ', 'get', FoodChick)
+Mock.mock('api/food/chickUsable', 'get', FoodChick)
 Mock.mock('api/food/list', 'get', FoodData)
 Mock.mock(/\/api\/food\/submit[\s\S]*?/, 'post', FoodSubmit)
 // 行程

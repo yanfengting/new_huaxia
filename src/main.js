@@ -57,7 +57,7 @@ axios.interceptors.response.use(function (response) {
 
 // 开发环境
 if (process.env.NODE_ENV === 'development') {
-  // require('./mock/mock.js')
+  require('./mock/mock.js')
 }
 
 new Vue({

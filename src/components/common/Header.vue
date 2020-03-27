@@ -66,7 +66,7 @@
            alt></div>
       <div class="logo-first"
            v-else
-           src="../assets/images/topmusic.png"
+           src="../assets/images/system/topmusic.png"
            alt></div>
     </a>
     <a @click="showSide"
@@ -83,9 +83,116 @@
     </a>
   </header>
 </template>
+
 <script>
 export default {
+  data () {
+    return {
+      orderNum: 0,
+      flightDetail: [],
+      day: 0,
+      startDate: '',
+      endDate: '',
+      type: 0,
+      tcinfo: []
+    }
+  },
+  created: function () {
+    var userInfo = localStorage.getItem('userInfo')
+    this.userInfo = JSON.parse(userInfo) // 转为JSON
+    this.axios({
+      method: 'post',
+      url: '/api/order/unfinished'
+    }).then((res) => {
+      // console.log(res)
+      if (res.status === 200) {
+        this.orderNum = res.data.data
+      } else {
+        console.log('数据获取失败，请刷新重试')
+      }
+    })
+    const flightStr = sessionStorage.getItem('flight')
+    if (flightStr) {
+      const flight = JSON.parse(flightStr)
+      this.flightDetail = flight
+      this.startDate = flight.startDate.split(' ')[1]
+      this.endDate = flight.endDate.split(' ')[1]
+      this.dateDif(this.flightDetail.endDate, this.flightDetail.startDate)
+    } else {
+      // sessionStorage.setItem('flight', JSON.stringify(this.flight))
+      this.axios({
+        method: 'get',
+        url: '/api/flightDetail/getUserFlight'
+      }).then((res) => {
+        // console.log(res)
+        if (res.status === 200) {
+          this.flightDetail = res.data.data
+          this.startDate = res.data.data.startDate.split(' ')[1]
+          this.endDate = res.data.data.endDate.split(' ')[1]
+          this.dateDif(this.flightDetail.endDate, this.flightDetail.startDate)
+        } else {
+          console.log('数据获取失败，请刷新重试')
+        }
+      })
+    }
+    this.tcHeaderInfo()
+  },
+  methods: {
+    Music () {
+      // this.showwait()
+      // return
+      this.$router.push('/music')
+    },
+    tcHeaderInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/transitUser/get'
+      }).then((res) => {
+        if (res.data.status === 200) {
+          this.tcinfo = res.data.data
+        } else if (res.data.status === 400) {
+          this.type = res.data.status
+        }
+      })
+    },
+    itinerary () {
+      this.$router.push('/flight_info')
+    },
+    showSide: function () {
+      this.$store.dispatch('showSideBar')
+    },
+    showwait () {
+      const alert = this.$dialog('该功能正在开发', 'my-wait')
+      alert.show()
+    },
+    back: function () {
+      const _self = this
+      if (this.$route.path.toLowerCase() === '/opinion' || this.$route.path.toLowerCase() === '/Opinion') {
+        _self.$parent.$parent.back2()
+      } else {
+        this.$router.go(-1) // 返回上一层
+      }
+    },
+    dateDif (enddate, starttime) {
+      // console.log(Date.parse(new Date(enddate)) + '---' + Date.parse(new Date(starttime)))
 
+      var date = Date.parse(new Date(enddate)) - Date.parse(new Date(starttime))
+
+      // console.log(date)
+      var days = date / 1000 / 60 / 60 / 24
+      var daysRound = Math.floor(days) // 天
+      this.day = daysRound
+      var hours = date / 1000 / 60 / 60 - (24 * daysRound)// 小时
+      var hoursRound = Math.floor(hours)
+      var minutes = date / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound)// 分钟
+      var minutesRound = Math.floor(minutes)
+      var seconds = date / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound)// 秒计算
+      var secondsRound = Math.floor(seconds)// 秒
+      var time = (hoursRound + '小时' + minutesRound + '分钟')
+      // console.log(time)
+      return time
+    }
+  }
 }
 </script>
 
@@ -96,16 +203,19 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 .mui-action-menu {
   height: 20px;
   width: 7px;
 }
+
 .hongdian {
   background: url("../../assets/images/system/hongdian.png") no-repeat center
     center;
   background-size: 10px 10px;
   margin-top: -10px;
 }
+
 .back-icon {
   height: 100%;
   width: 100%;
@@ -114,18 +224,22 @@ export default {
   background-position: center center;
   background-size: 13px 18px;
 }
+
 .mui-action-back {
   width: 20px;
   height: 24px;
 }
+
 .mui-icon-back {
   /*height: 100%;*/
   z-index: 2;
 }
+
 .mui-bar {
   right: 0;
   left: 0;
   height: 50px;
+
   /* border-bottom: 1px solid rgb(118, 130, 151); */
   background-color: #fff;
   backface-visibility: hidden;
@@ -133,17 +247,21 @@ export default {
   padding-bottom: 0px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
+
 .mui-bar-nav {
   top: 0;
 }
+
 .mui-bar-nav.mui-bar .mui-icon {
   padding-right: 10px;
   padding-left: 10px;
 }
+
 .mui-bar .mui-icon {
   font-size: 18px;
   position: relative;
 }
+
 .mui-icon {
   font-family: Muiicons;
   font-weight: 400;
@@ -152,9 +270,11 @@ export default {
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
 }
+
 .mui-pull-left {
   float: left;
 }
+
 .mui-pull-right {
   float: right;
   display: flex;
@@ -162,18 +282,22 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 a {
   text-decoration: none;
   color: #007aff;
 }
+
 .menu2 {
   background: url("../../assets/images/system/menu2.png") no-repeat no-repeat;
   background-size: 60% 100%;
   background-position: center center;
 }
+
 a {
   background: 0 0;
 }
+
 .mui-bar .mui-title {
   /*right: 40px;*/
   display: flex;
@@ -186,6 +310,7 @@ a {
   margin: 0;
   text-overflow: ellipsis;
 }
+
 .mui-title {
   font-size: 17px;
   font-weight: 500;
@@ -196,21 +321,25 @@ a {
   color: #000;
   margin: 0 auto;
 }
+
 .logo-left {
   vertical-align: top;
   padding-left: 10px;
   width: 100%;
   height: 100%;
 }
+
 .logo-right {
   vertical-align: top;
   width: 100%;
   height: 100%;
 }
+
 /**
   width: 5px;
     height: 24px;
    */
+
 .logo-first {
   vertical-align: top;
   width: 100%;
@@ -218,12 +347,14 @@ a {
   /* width: 18px;
      height: 18px;*/
 }
+
 .start {
   height: 44px;
   width: 85px;
   display: inline-block;
   /* border: 1px solid #cdcdcd; */
 }
+
 .middle {
   height: 44px;
   width: 50px;
@@ -233,12 +364,14 @@ a {
   align-items: center;
   /* border: 1px solid #cdcdcd; */
 }
+
 .site {
   display: block;
   /*height: 25px;*/
   font-size: 14px;
   font-weight: 200;
 }
+
 .flight {
   width: 18px;
   height: 10px;
@@ -249,6 +382,7 @@ a {
   margin: 0 auto;
   padding: 0;
 }
+
 .time {
   height: 10px;
   display: block;
@@ -256,6 +390,7 @@ a {
   color: rgb(149, 169, 191);
   line-height: 18px;
 }
+
 .fly {
   height: 10px;
   display: block;
@@ -265,6 +400,7 @@ a {
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
 .logo {
   width: 44px;
   position: relative;
@@ -272,7 +408,7 @@ a {
 }
 /* 音乐图标 */
 .Music {
-  background: url("../../assets/images/system/muisc.png") no-repeat left top;
+  background: url("../../assets/images/system/music.png") no-repeat left top;
   background-size: 100% 100%;
 }
 a.music-btn,
@@ -280,8 +416,9 @@ div.music-btn {
   width: 20px;
   height: 20px;
 }
+
 .music-btn-icon {
-  background-image: url("../../assets/images/system/topmusic.png");
+  background-image: url(../../assets/images/system/topmusic.png);
   background-repeat: no-repeat;
   background-position: 100% 100%;
   background-size: 100% 100%;
