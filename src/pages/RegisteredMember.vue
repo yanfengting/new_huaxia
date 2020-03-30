@@ -171,10 +171,7 @@ export default {
 img {
   width: 100%;
 }
-.left15,
-.t-content {
-  content: "viewport-units-buggyfill; margin-left: 4.412vw";
-}
+
 .t-content {
   background: #fefefe;
   margin-left: 4.412vw;
@@ -188,7 +185,6 @@ img {
   font-size: 4.412vw;
   line-height: 13.235vw;
   text-align: left;
-  content: "viewport-units-buggyfill; padding: 2.941vw auto; font-size: 4.412vw; line-height: 13.235vw";
 }
 .line-centet {
   border-top: 1px solid #f2f2f2;
@@ -200,7 +196,6 @@ img {
 .line input {
   color: #c1c1c1;
   margin-right: 4.412vw;
-  content: "viewport-units-buggyfill; margin-right: 4.412vw";
   width: 60%;
   text-align: right;
   background: #fff;
@@ -212,7 +207,6 @@ img {
 .b-bo-b {
   margin-top: 2.941vw;
   background-color: #fff;
-  content: "viewport-units-buggyfill; margin-top: 2.941vw";
 }
 
 .b-bo,
@@ -241,6 +235,5 @@ img {
   border-radius: 0.588vw;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  content: "viewport-units-buggyfill; padding: 5vw 4.706vw; font-size: 4.706vw; border-radius: 0.588vw";
 }
 </style>
