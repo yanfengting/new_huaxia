@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <div class="upload">
-
       <input @change="fileChange($event)"
              type="file"
              id="upload_file"
@@ -28,7 +27,7 @@
           <div class="img"></div>
         </div>
       </div>
-      <div class="upload_warp_text">选中{{imgList.length}}个文件，共{{bytesToSize(this.size)}}</div>
+      <!-- <div class="upload_warp_text">选中{{imgList.length}}个文件，共{{bytesToSize(this.size)}}</div> -->
     </div>
 
     <!-- <div

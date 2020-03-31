@@ -186,8 +186,8 @@ export default {
       var hoursRound = Math.floor(hours)
       var minutes = date / 1000 / 60 - (24 * 60 * daysRound) - (60 * hoursRound)// 分钟
       var minutesRound = Math.floor(minutes)
-      var seconds = date / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound)// 秒计算
-      var secondsRound = Math.floor(seconds)// 秒
+      // var seconds = date / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound)// 秒计算
+      // var secondsRound = Math.floor(seconds)// 秒
       var time = (hoursRound + '小时' + minutesRound + '分钟')
       // console.log(time)
       return time
