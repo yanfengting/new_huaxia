@@ -371,7 +371,7 @@ const GameIdData = {
     id: '1eba0854-268e-43e8-bcfc-4a824650hsju',
     name: '@ctitle(4,8)',
     src: '@image',
-    poster: '@image(`100x180`)',
+    poster: 'http://www.baidu.com/',
     description: ' @ctitle(50,100) ',
     status: null,
     position: 22,
@@ -781,10 +781,10 @@ Mock.mock('/api/transitUser/get', 'get', {
 // 品牌介绍数据
 Mock.mock('/api/brand/view', 'get', BrandData)
 Mock.mock('/api/sales/view', 'get', SalesData)
-Mock.mock('/api/route/view ', 'get', RouteData)
+Mock.mock('/api/route/view', 'get', RouteData)
 
 Mock.mock(/\/api\/safety\/view[\s\S]*?/, 'get', SafetyData)
-Mock.mock('/api/trip/list ', 'get', TripData)
+Mock.mock('/api/trip/list', 'get', TripData)
 Mock.mock(/\/api\/destination\/view[\s\S]*?/, 'get', DesData)
 // 订单有关
 Mock.mock('/api/order/unfinished', 'post', UnfinishedData)
@@ -801,7 +801,7 @@ Mock.mock(/\/api\/movie\/list[\s\S]*?/, MovieData)
 Mock.mock(/\/api\/advertise\/list[\s\S]*?/, AdvertiseData)
 Mock.mock(/\/api\/advertise[\s\S]*?/, AdvertiseIdData)
 
-Mock.mock('/api/music/list ', MusicData)
+Mock.mock('/api/music/list', MusicData)
 Mock.mock('/api/game/list', GameData)
 Mock.mock(/\/api\/game[\s\S]*?/, GameIdData)
 

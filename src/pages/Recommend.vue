@@ -189,7 +189,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style >
 .block-item {
   /*display: block;*/
   /*margin: 14px;*/
@@ -200,7 +200,7 @@ export default {
 }
 .image-ctn {
   border: 1px #e2e2e2 solid;
-  margin: 15px 20px;
+  margin: 15px 10px;
   border-radius: 5px;
 }
 .image-ctn img {

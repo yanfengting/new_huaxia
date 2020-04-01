@@ -175,7 +175,7 @@ export default {
   justify-content: center;
   align-items: center;
   color: #c3c3c3;
-  >>> hr {
+  hr {
     width: 50px;
     margin: 0 10px;
     height: 1px;

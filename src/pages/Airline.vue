@@ -96,7 +96,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style >
 .bottom-desp {
   height: 80px;
   line-height: 80px;
@@ -186,5 +186,13 @@ export default {
   box-shadow: 0 1.176vw 3.529vw rgba(0, 0, 0, 0.08);
   /*border-radius: .588vw .588vw 1.471vw 1.471vw;*/
   margin: 20px auto;
+}
+.block-item {
+  display: block;
+  margin: 10px;
+  cursor: pointer;
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
+  /*border-radius: 2px 2px 5px 5px;*/
+  /*margin-bottom: 4px;*/
 }
 </style>
