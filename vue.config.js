@@ -32,5 +32,12 @@ module.exports = {
       postCompile: true,
       theme: true
     }
+  },
+  configureWebpack: config => {
+    config.entry.app = ['babel-polyfill', './src/main.js']
   }
+  // chainWebpack(config) {
+  //   // 在chainWebpack中添加下面的代码
+  //   config.entry('main').add('babel-polyfill') // main是入口js文件
+  // }
 }

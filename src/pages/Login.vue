@@ -1,6 +1,5 @@
 <template>
   <div class="base">
-    <!--<img src="../assets/images/离线登录背景.png" class="login-back" alt="">-->
     <div class="login">
       <div class="login-header">
         <div class="logo">
@@ -288,7 +287,7 @@ export default {
               mobile: this.loginForm.tel
             }
           }).then((res) => {
-            console.log(res)
+            // console.log(res)
             if (res.data.status === 200) {
               this.loginForm.token = res.data.data
               localStorage.setItem('userInfo', JSON.stringify(this.loginForm)) // JSON.stringify 将JSON转为字符串存到变量里
@@ -385,6 +384,7 @@ input {
   background-size: 100% 100%;
   height: auto;
   height: 100%;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;

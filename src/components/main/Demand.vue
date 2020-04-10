@@ -16,25 +16,25 @@ import DemandAlert from './DemandAlert'
 
 export default {
   components: { DemandAlert },
-  // props: {
-  //   seat: {
-  //     type: String
-  //   },
-  //   demand_sku: {
-  //     type: Boolean
-  //   }
-  // },
+  props: {
+    seat: {
+      type: String
+    },
+    demand_sku: {
+      type: Boolean
+    }
+  },
   data () {
     return {
       newseat: this.seat,
       is_sku: this.demand_sku
     }
   },
-  // watch: {
-  //   sku_demand: function (val, oldVal) {
-  //     this.is_sku = val
-  //   }
-  // },
+  watch: {
+    sku_demand: function (val, oldVal) {
+      this.is_sku = val
+    }
+  },
   methods: {
     // 点呼唤铃
     addCart () {

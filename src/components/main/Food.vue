@@ -16,19 +16,19 @@
 import FoodAlert from './FoodAlert'
 export default {
   components: { FoodAlert },
-  // props: {
-  //   seat: {
-  //     type: String
-  //   },
-  //   food_sku: {
-  //     type: Boolean
-  //   }
-  // },
-  // watch: {
-  //   sku_food: function (val, oldVal) {
-  //     this.is_sku = val
-  //   }
-  // },
+  props: {
+    seat: {
+      type: String
+    },
+    food_sku: {
+      type: Boolean
+    }
+  },
+  watch: {
+    sku_food: function (val, oldVal) {
+      this.is_sku = val
+    }
+  },
   data () {
     return {
       newseat: this.seat,

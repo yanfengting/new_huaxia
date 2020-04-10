@@ -46,7 +46,7 @@
 </template>
 <script>
 import Nav from '../components/common/Nav.vue'
-import Swiper from 'swiper' // 引用swiper
+// import Swiper from 'swiper' // 引用swiper
 import 'swiper/dist/css/swiper.min.css' // 引用css
 export default {
   data () {
@@ -75,18 +75,18 @@ export default {
     })
   },
   methods: {
-    initbanner () {
-      const swiper = new Swiper('.swiper-container', {
-        spaceBetween: 30,
-        observer: true,
-        observeParents: true,
-        loop: true,
-        freeMode: true,
-        pagination: {
-          el: '.swiper-pagination'
-        }
-      })
-    },
+    // initbanner () {
+    //   const swiper = new Swiper('.swiper-container', {
+    //     spaceBetween: 30,
+    //     observer: true,
+    //     observeParents: true,
+    //     loop: true,
+    //     freeMode: true,
+    //     pagination: {
+    //       el: '.swiper-pagination'
+    //     }
+    //   })
+    // },
     playGame () {
       const _this = this
       this.axios.get('/api/adv/random?type=2&position=3').then(function (data) {

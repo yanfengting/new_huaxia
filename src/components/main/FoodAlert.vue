@@ -325,9 +325,10 @@ export default {
       this.$dialog('订单提交成功', 'my-order')
     },
     showError (msg) {
-      let msgStr = '网络或系统错误，请重新提交'
+      // let msgStr = '网络或系统错误，请重新提交'
       if (msg) {
-        msgStr = msg
+        // msgStr = msg
+        console.log('网络或系统错误，请重新提交')
       }
       this.$dialog(msg, 'my-error')
     }

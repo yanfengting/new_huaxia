@@ -8,7 +8,8 @@ import registryDialog from './components/common/dialog/index'
 import store from './store' // 引入store
 import vueSwiper from 'vue-awesome-swiper' // 引入vue-awesome-swiper
 import 'swiper/dist/css/swiper.css' // 引入样式
-
+// 在main.js中，import babel-polyfill引入,本人测试后无效 并且报错
+// import 'babel-polyfill'
 Vue.use(vueSwiper) // 使用插件
 Vue.prototype.$dialog = (text, icon = 'success', show = true) => {
   return registryDialog.showDialog(text, icon, show)

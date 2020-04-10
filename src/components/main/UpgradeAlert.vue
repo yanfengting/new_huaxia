@@ -107,18 +107,32 @@ export default {
       skuArr: [],
       num: 1,
       unable: false,
-      is_sku: this.upgrade_sku, // 规格弹窗
+      // newseat: '',
+      is_sku: '', // 规格弹窗
       description: '',
-      newseat: this.seat,
       readonly: true
     }
   },
+  computed: {
+    newseat () { return this.seat }
+  },
+  // 一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 $watch()，遍历 watch 对象的每一个属性。
   watch: {
     upgrade_sku: function (val, oldVal) {
       this.is_sku = val
     }
+    // newseat: function (val, oldVal) {
+    //   console.log(val)
+    //   console.log(this.newseat)
+    //   console.log(this.seat)
+    //   console.log(oldVal)
+    // }
   },
   created: function () {
+    // this.newseat = this.seat
+    this.is_sku = this.upgrade_sku
+    // console.log(this.seat)
+    // console.log('this.seat')
     this.axios({
       method: 'get',
       url: 'api/upgrade/list'
@@ -226,6 +240,9 @@ export default {
         registryToast.showToast('服务器已经关闭')
         _this.$parent.cancelMask()
         return
+      }
+      if (this.newseat == '') {
+        registryToast.showToast('座位号不能为空')
       }
       if (this.i === -1) {
       } else {

@@ -244,7 +244,7 @@ export default {
       upgrade_sku: false,
       demand_sku: false,
       food_sku: false,
-      props: ['upgrade_sku'],
+      // props: ['upgrade_sku'],
       endDate: '',
       startDate: '',
       day: 0,

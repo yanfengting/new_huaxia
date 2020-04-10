@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       gameArr: [{
-        label: '',
+        // label: '',
         initindex: 0,
         data: [{ seller: '', poster: '', name: '' }]
       }]
@@ -28,7 +28,7 @@ export default {
     const _this = this
     const initindex = sessionStorage.getItem('gameInitIndex')
     if (initindex) {
-      this.initindex = parseInt(initindex)
+      this.initindex = parseInt(initindex)// 解析一个字符串,并返回一个整数。
     } else {
       this.initindex = 0
     }
@@ -59,6 +59,7 @@ export default {
       }
     )
   },
+  // 计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
   computed: {
     tabs: {
       get: function () {

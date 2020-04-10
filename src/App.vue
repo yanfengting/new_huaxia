@@ -18,12 +18,31 @@ export default {
 </script>
 
 <style lang="stylus">
-html, body, #app {
+// 屏幕宽度大于500
+// @media screen and (min-width: 500px) {
+// body {
+// margin: 0 auto;
+// max-width: 500px;
+// display: block;
+// }
+// }
+html {
+  width: 100%;
+  height: 100%;
+}
+body, #app {
+  left: 0px;
+  right: 0px;
+  // max-width: 500PX;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  // width: 100%;
+  height: 100%;
+  background-color: rgb(239, 239, 247);
   margin: 0;
   padding: 0;
-  height: 100%;
   -webkit-overflow-scrolling: touch;
-  /* width: 100%; */
 }
 p {
   line-height: 25px;

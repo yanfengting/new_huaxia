@@ -17,23 +17,17 @@ import UpgradeAlert from './UpgradeAlert'
 
 export default {
   components: { UpgradeAlert },
-  // props: {
-  //   seat: {
-  //     type: String
-  //   },
-  //   upgrade_sku: {
-  //     type: Boolean
-  //   }
-  // },
+  props: {
+    seat: {
+      type: String
+    },
+    upgrade_sku: {
+      type: Boolean
+    }
+  },
   data () {
     return {
-      price: null,
-      thumbUrl: null,
-      i: -1,
-      skuArr: [],
-      num: 1,
       is_sku: this.upgrade_sku, // 规格弹窗
-      description: '',
       newseat: this.seat
     }
   },
