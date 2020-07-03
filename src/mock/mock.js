@@ -319,19 +319,20 @@ const TripData = {
   msg: '',
   data: [{}]
 }
+// 目的地推荐
 const DesData = {
   status: 200,
   msg: '',
   data: {
-    city: '扬州',
+    city: '重庆',
     topic: [{
         title: '游玩攻略',
-        titleImg: '@image(`120x60`)',
+        titleImg: '@image(`1200x600`)',
         content: '<p> ... </p>'
       },
       {
         title: '美食推荐',
-        titleImg: '@image(`120x60`)',
+        titleImg: '@image(`1200x600`)',
         content: '<p> ... </p>'
       }
     ]

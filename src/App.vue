@@ -17,31 +17,44 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-// 屏幕宽度大于500
+<style>
+/* // 屏幕宽度大于500
 // @media screen and (min-width: 500px) {
 // body {
 // margin: 0 auto;
 // max-width: 500px;
 // display: block;
 // }
-// }
+// } */
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 3vw;
+  }
+}
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 3.5vw;
+  }
+}
 html {
   width: 100%;
   height: 100%;
 }
-body, #app {
+body,html,#app {
   left: 0px;
   right: 0px;
-  // max-width: 500PX;
+  max-width: 640PX;
+  min-width: 320PX;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  // width: 100%;
+  width: 100%;
   height: 100%;
-  background-color: rgb(239, 239, 247);
-  margin: 0;
-  padding: 0;
+}
+body, #app {
+  /* background-color: rgb(239, 239, 247); */
+  /* margin: 0;
+  padding: 0; */
   -webkit-overflow-scrolling: touch;
 }
 p {

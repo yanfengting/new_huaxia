@@ -17,20 +17,20 @@
 
     <!-- <div v-if="destArr" class="tishi">暂无目的地推荐</div> -->
     <div v-if="destArr">
-      <cube-slide :speed="200"
+      <!-- <cube-slide :speed="200"
                   ref="slide"
                   class="swipe-img"
                   :data="items">
         <cube-slide-item v-for="(item, index) in items"
                          :key="index">
-          <!-- <a :href="'http://10.191.1.1' + item.src">
+          <a :href="'http://10.191.1.1' + item.src">
             <img v-bind:src="'http://10.191.1.1' + item.src">
-          </a> -->
+          </a>
           <a :href="item.src">
             <img v-bind:src="item.src">
           </a>
         </cube-slide-item>
-      </cube-slide>
+      </cube-slide> -->
       <!-- 航线特惠数据 -->
       <a class="block-item ">
         <div class="ariline-image"
@@ -131,8 +131,8 @@ export default {
     }).then((res) => {
       // console.log(res)
       if (res.data.status === 200) {
-        // this.destArr = res.data.data.topic
-        // console.log(this.destArr)
+        this.destArr = res.data.data.topic
+        console.log(this.destArr)
       } else {
         console.log('数据获取失败，请刷新重试')
       }

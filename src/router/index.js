@@ -25,6 +25,7 @@ import GiftWenChuang from '@/pages/GiftWenChuang.vue'
 import GiftLvYou from '@/pages/GiftLvYou.vue'
 import GiftXianHang from '@/pages/GiftXianHang.vue'
 import ShopDetail from '@/pages/ShopDetail.vue'
+import ShopCart from '@/pages/ShopCart.vue'
 
 import Recommend from '@/pages/Recommend.vue'
 import RecommendDetail from '@/pages/RecommendDetail.vue'
@@ -126,6 +127,10 @@ export default new Router({
     path: '/shopDetail',
     name: 'ShopDetail',
     component: ShopDetail
+  }, {
+    path: '/ShopCart',
+    name: 'ShopCart',
+    component: ShopCart
   }, {
     path: '/recommend',
     name: 'Recommend',
