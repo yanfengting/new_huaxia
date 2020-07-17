@@ -62,7 +62,7 @@ export default {
     const id = this.$route.query.id
     const _this = this
     // console.log(id)
-    // let swiper = this.initbanner()
+    // const swiper = this.initbanner()
     this.axios.get('/api/game/' + id).then(function (res) {
       const data = res.data
       if (data.status === 200) {
@@ -70,7 +70,7 @@ export default {
         if (_this.data.score === 0) {
           _this.data.score = 0
         }
-        _this.initbanner()
+        // _this.initbanner()
       }
     })
   },

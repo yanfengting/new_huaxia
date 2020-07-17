@@ -57,8 +57,8 @@ export default {
       // 切到某个tab下，再去请求数据
       // console.log(current)
       this.index = current
-      const component = this.$refs.component[current]
-      component.fetch && component.fetch()
+      // const component = this.$refs.component[current]
+      // component.fetch && component.fetch()
     },
     onScroll (pos) {
       // console.log(pos.x)
@@ -86,7 +86,7 @@ export default {
         // this.index = current
         const component = this.$refs.component[this.index]
         component.fetch && component.fetch()
-        sessionStorage.setItem('gameInitIndex', this.index)
+        // sessionStorage.setItem('gameInitIndex', this.index)
       }
     }
   }

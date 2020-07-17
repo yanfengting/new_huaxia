@@ -39,10 +39,10 @@ export default {
   mounted () {
   },
   created () {
-    const _this = this
-    setTimeout(function () {
-      _this.$refs.scroll.refresh()
-    }, 2000)
+    // const _this = this
+    // setTimeout(function () {
+    //   _this.$refs.scroll.refresh()
+    // }, 2000)
   },
   methods: {
     onScroll (pos) {

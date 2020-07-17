@@ -13,7 +13,7 @@
         :loop="false"
         :auto-play="false"
         :show-dots="false"
-        :initial-index="initialIndex"
+        :initial-index="index"
         ref="slide"
         @change="onChange"
         @scroll="onScroll"
@@ -28,7 +28,7 @@
 </template>
 <script>
   export default {
-    name: 'Videotab',
+    name: 'Readtab',
     props: {
       tabs: {
         type: Array,
@@ -43,7 +43,8 @@
     },
     data() {
       return {
-        index: 0, // 默认是第几个
+        // index: 0, // 默认是第几个
+        index: this.initialIndex, // 默认是第几个
         init: false,
         slideOptions: {
           listenScroll: true, // 是否监控scroll事件
@@ -55,7 +56,8 @@
     methods: {
       // 页面切换时触发
       onChange(current) {
-        this.initialIndex = current
+        // this.initialIndex = current
+        this.index = current
       },
       onScroll(pos) {
         // console.log(pos.x)
@@ -68,20 +70,23 @@
     computed: {
       selectedLabel: {
         get() {
-          // console.log(this.initialIndex)
-          return this.tabs[this.initialIndex].label === 'undefined' ? '' : this.tabs[this.initialIndex].label
+          return this.tabs[this.index].label
+          // return this.tabs[this.initialIndex].label === 'undefined' ? '' : this.tabs[this.initialIndex].label
         },
         set(newVal) {
           // 点击菜单切换  计算当前index是什么，
-          if (!this.init) {
-            this.$refs.slide.refresh()
-            this.init = true
-          }
-          // 点击菜单切换  计算当前index是什么，
-          this.initialIndex = this.tabs.findIndex(value => {
+          this.index = this.tabs.findIndex(value => {
             return value.label === newVal
           })
-          sessionStorage.setItem('readInitIndex', this.initialIndex)
+          // if (!this.init) {
+          //   this.$refs.slide.refresh()
+          //   this.init = true
+          // }
+          // // 点击菜单切换  计算当前index是什么
+          // this.initialIndex = this.tabs.findIndex(value => {
+          //   return value.label === newVal
+          // })
+          // sessionStorage.setItem('readInitIndex', this.initialIndex)
         }
       }
     }

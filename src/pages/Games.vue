@@ -3,7 +3,7 @@
     <Nav></Nav>
     <div class="tab-wrapper">
       <Gamestab :tabs="tabs"
-                :initialIndex=initindex></Gamestab>
+                :initialIndex=0></Gamestab>
     </div>
   </div>
 </template>
@@ -17,21 +17,21 @@ import Quiz from '../components/games/Quiz'
 export default {
   data () {
     return {
+      // initindex: 0,
       gameArr: [{
-        // label: '',
-        initindex: 0,
-        data: [{ seller: '', poster: '', name: '' }]
+        label: '',
+        data: [{ seller: '' }]
       }]
     }
   },
   created: function () {
     const _this = this
-    const initindex = sessionStorage.getItem('gameInitIndex')
-    if (initindex) {
-      this.initindex = parseInt(initindex)// 解析一个字符串,并返回一个整数。
-    } else {
-      this.initindex = 0
-    }
+    // const initindex = sessionStorage.getItem('gameInitIndex')
+    // if (initindex) {
+    //   this.initindex = parseInt(initindex)// 解析一个字符串,并返回一个整数。
+    // } else {
+    //   this.initindex = 0
+    // }
     this.axios.get('/api/game/list').then(
       res => {
         // console.log(res)

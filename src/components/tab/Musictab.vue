@@ -20,7 +20,7 @@
         @scroll="onScroll"
         :options="slideOptions"
       >
-        <cube-slide-item v-for="(tab, index) in tabs" :key="index">
+        <cube-slide-item v-for="(tab, index) in tabs"  :key="index">
           <component ref="component" :is="tab.component" :data="tab.data.seller"></component>
         </cube-slide-item>
       </cube-slide>
@@ -75,7 +75,7 @@
         },
         set(newVal) {
           // console.log('set val', newVal)
-          // 点击菜单切换  计算当前index是什么，
+          // 点击菜单切换  计算当前index是什么
           this.index = this.tabs.findIndex(value => {
             return value.label === newVal
           })

@@ -43,8 +43,8 @@ html {
 body,html,#app {
   left: 0px;
   right: 0px;
-  max-width: 640PX;
-  min-width: 320PX;
+  /* max-width: 640PX;
+  min-width: 320PX; */
   margin-left: auto;
   margin-right: auto;
   position: relative;

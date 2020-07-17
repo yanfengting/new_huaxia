@@ -92,7 +92,8 @@
     computed: {
       selectedLabel: {
         get() {
-          return this.tabs[this.index].label === 'undefined' ? '' : this.tabs[this.index].label
+          return this.tabs[this.index].label
+          // return this.tabs[this.index].label === 'undefined' ? '' : this.tabs[this.index].label
         },
         set(newVal) {
           // 点击菜单切换  计算当前index是什么，
