@@ -69,26 +69,26 @@
       }
     },
     created: function () {
-      let id = this.$route.query.id
+      const id = this.$route.query.id
     },
     mounted() {
       this.height = `${document.documentElement.clientHeight}` + 'px'
       this.max = this.$store.state.duration
-      let id = this.$route.query.id
-      let keep = this.$route.query.keep
+      const id = this.$route.query.id
+      const keep = this.$route.query.keep
       // color="#00acec"
-      let music = this.getPlayMusic()
+      const music = this.getPlayMusic()
       if (!keep) {
-        this.$store.commit('playMusic', { 'src': music.src, 'musicName': music.name, 'duration': music.duration })
+        this.$store.commit('playMusic', { src: music.src, musicName: music.name, duration: music.duration })
       }
       this.getLyric()
 
       this.progress = this.$refs.progress
       this.progressContent = this.$refs.progressContent
       this.thunk = this.$refs.thunk
-      let _this = this
-      let _left = this.progressContent.offsetLeft
-      let _width = this.progressContent.offsetWidth
+      const _this = this
+      const _left = this.progressContent.offsetLeft
+      const _width = this.progressContent.offsetWidth
       let bl = 0
       let seek = false
       // 监听颜色进度条是否触摸拖动
@@ -102,34 +102,34 @@
 
       // 监听颜色进度条是否触摸拖动结束
       this.thunk.addEventListener('touchend', () => {
-        let pre = bl * _this.$store.state.duration
+        const pre = bl * _this.$store.state.duration
         _this.startMusic(pre, seek)
         seek = false
       })
       this.progressContent.addEventListener('touchstart', (event) => {
         // console.log(event.targetTouches[0].pageX)
         const events = event.targetTouches[0].pageX - _left
-        let bl = (events / _width)
+        const bl = (events / _width)
         this.progress.style.width = `${bl * 100}%` // 计算进度条所在比例宽度
-        let pre = bl * _this.$store.state.duration
+        const pre = bl * _this.$store.state.duration
         _this.startMusic(pre, true)
       })
     },
     methods: {
       getPlayMusic() {
-        let musicStr = sessionStorage.getItem('curMusic')
+        const musicStr = sessionStorage.getItem('curMusic')
         return JSON.parse(musicStr)
       },
       getLyric() {
-        let _this = this
+        const _this = this
         if (this.$store.lyric) {
           this.$store.lyric.stop()
         }
         this.initLyric()
       },
       initLyric() {
-        let _this = this
-        let music = this.getPlayMusic()
+        const _this = this
+        const music = this.getPlayMusic()
         // music.lyrics = music.lyrics.replace('/cancrieasproxy/music', '')
         this.axios.get(music.lyrics).then(response => {
           if (response.status === 200) {
@@ -147,12 +147,12 @@
         this.$store.state.playType = type
       },
       handleLyric({ lineNum, txt }) {
-        let _this = this
+        const _this = this
         setTimeout(function() {
           _this.currentLineNum = lineNum
           // 若当前行大于5,开始滚动,以保歌词显示于中间位置
           if (lineNum > 5) {
-            let lineEl = _this.$refs.lyricLine[lineNum - 5]
+            const lineEl = _this.$refs.lyricLine[lineNum - 5]
             // 结合better-scroll，滚动歌词
             _this.$refs.lyricList.scrollToElement(lineEl, 1000)
           } else {
@@ -162,12 +162,12 @@
       },
       pauseMusic() {
         this.$store.state.lyric.stop()
-        let audio = document.getElementById('music')
+        const audio = document.getElementById('music')
         audio.pause()
         this.$store.state.playFlag = false
       },
       startMusic(pre, seek) {
-        let audio = document.getElementById('music')
+        const audio = document.getElementById('music')
         // debugger
         if (seek) {
           audio.currentTime = pre
@@ -182,7 +182,7 @@
         if (this.$store.state.lyric) {
           this.$store.state.lyric.togglePlay()
         }
-        let audio = document.getElementById('music')
+        const audio = document.getElementById('music')
         // debugger
         if (this.$store.state.playFlag) {
           // audio.currentTime = 0

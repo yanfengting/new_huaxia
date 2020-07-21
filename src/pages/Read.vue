@@ -2,7 +2,7 @@
     <div>
         <Nav></Nav>
         <div class="tab-wrapper">
-            <Readtab :tabs="tabs" :initialIndex=0></Readtab>
+            <Readtab :tabs="tabs" :initialIndex='initindex'></Readtab>
         </div>
     </div>
 </template>
@@ -18,20 +18,20 @@
         readArr: [{
           label: '',
           data: [{ seller: '' }]
-        }]
+        }],
         // ebookArr: []
-        // initindex: 0
+        initindex: 0
       }
     },
     created: function () {
       const _self = this
-      // const initindex = sessionStorage.getItem('readInitIndex')
-      // if (initindex) {
-      //   this.initindex = parseInt(initindex)
-      // } else {
-      //   this.initindex = 0
-      // }
-      // console.log('here', this.initindex)
+      const initindex = sessionStorage.getItem('readInitIndex')
+      if (initindex) {
+        this.initindex = parseInt(initindex)
+      } else {
+        this.initindex = 0
+      }
+      console.log('here', this.initindex)
       this.axios.get('/api/ebook/listType').then(
         res => {
           if (res.status === 200) {

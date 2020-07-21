@@ -43,8 +43,8 @@
     },
     data() {
       return {
-        // index: 0, // 默认是第几个
-        index: this.initialIndex, // 默认是第几个
+        index: 0, // 默认是第几个
+        // index: this.initialIndex, // 默认是第几个
         init: false,
         slideOptions: {
           listenScroll: true, // 是否监控scroll事件
@@ -70,23 +70,23 @@
     computed: {
       selectedLabel: {
         get() {
-          return this.tabs[this.index].label
-          // return this.tabs[this.initialIndex].label === 'undefined' ? '' : this.tabs[this.initialIndex].label
+          // return this.tabs[this.index].label
+          return this.tabs[this.initialIndex].label === 'undefined' ? '' : this.tabs[this.initialIndex].label
         },
         set(newVal) {
-          // 点击菜单切换  计算当前index是什么，
-          this.index = this.tabs.findIndex(value => {
-            return value.label === newVal
-          })
-          // if (!this.init) {
-          //   this.$refs.slide.refresh()
-          //   this.init = true
-          // }
-          // // 点击菜单切换  计算当前index是什么
-          // this.initialIndex = this.tabs.findIndex(value => {
+          // // 点击菜单切换  计算当前index是什么，
+          // this.index = this.tabs.findIndex(value => {
           //   return value.label === newVal
           // })
-          // sessionStorage.setItem('readInitIndex', this.initialIndex)
+          if (!this.init) {
+            this.$refs.slide.refresh()
+            this.init = true
+          }
+          // 点击菜单切换  计算当前index是什么
+          this.initialIndex = this.tabs.findIndex(value => {
+            return value.label === newVal
+          })
+          sessionStorage.setItem('readInitIndex', this.initialIndex)
         }
       }
     }
